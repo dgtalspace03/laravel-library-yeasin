@@ -1,0 +1,1277 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>PageTurn — Library Management UI</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+      
+    </head>
+    <body>
+        
+
+        <main id="home" class="page-view container-xl py-4 py-lg-5">
+            <section class="hero p-4 p-lg-5 mb-4">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-7">
+                        <div class="eyebrow mb-3">
+                            Your next chapter starts here
+                        </div>
+                        <h1 class="display-4 mb-3">
+                            Find a book.<br />Find your world.
+                        </h1>
+                        <p class="lead mb-4">
+                            Explore the library, borrow something brilliant, and
+                            keep your reading journey in one place.
+                        </p>
+                        <a
+                            class="btn btn-light text-primary fw-bold px-4 py-2"
+                            href="#catalog"
+                            >Explore the collection
+                            <span aria-hidden="true">→</span></a
+                        >
+                    </div>
+                    <div class="col-lg-5 d-none d-md-block">
+                        <div class="book-stack" aria-hidden="true">
+                            <div class="hero-book">The Art<br />of Focus</div>
+                            <div class="hero-book">Small<br />Worlds</div>
+                            <div class="hero-book">Green<br />Horizons</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="surface p-2 p-md-3 mb-4">
+                <div class="row g-2">
+                    <div class="col">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0"
+                                >⌕</span
+                            ><input
+                                id="bookSearch"
+                                class="form-control border-start-0"
+                                placeholder="Search by title, author, or category..."
+                                aria-label="Search books"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <button
+                            class="btn btn-primary h-100 px-4"
+                            id="searchBtn"
+                        >
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <section id="catalog">
+                <div
+                    class="d-flex justify-content-between align-items-end flex-wrap gap-2 mb-3"
+                >
+                    <div>
+                        <h2 class="h3 fw-bold mb-1">Explore the collection</h2>
+                        <p class="text-secondary mb-0">
+                            Hand-picked stories and ideas for curious minds.
+                        </p>
+                    </div>
+                    <span class="small text-secondary" id="bookCount"
+                        >8 books</span
+                    >
+                </div>
+                <div id="homeFilters" class="d-flex gap-2 flex-wrap mb-4">
+                    <button
+                        class="btn btn-sm btn-primary rounded-pill"
+                        data-category="All"
+                    >
+                        All books</button
+                    ><button
+                        class="btn btn-sm btn-outline-secondary rounded-pill"
+                        data-category="Fiction"
+                    >
+                        Fiction</button
+                    ><button
+                        class="btn btn-sm btn-outline-secondary rounded-pill"
+                        data-category="Personal Growth"
+                    >
+                        Personal growth</button
+                    ><button
+                        class="btn btn-sm btn-outline-secondary rounded-pill"
+                        data-category="Technology"
+                    >
+                        Technology</button
+                    ><button
+                        class="btn btn-sm btn-outline-secondary rounded-pill"
+                        data-category="History"
+                    >
+                        History
+                    </button>
+                </div>
+                <div
+                    id="homeBookGrid"
+                    class="row row-cols-2 row-cols-md-3 row-cols-xl-4 g-3 g-lg-4"
+                ></div>
+            </section>
+        </main>
+
+        <main id="signin" class="page-view auth-area px-3 py-5 d-none">
+            <form class="auth-card surface p-4 p-md-5 demo-form">
+                <div class="navbar-brand d-flex align-items-center mb-4">
+                    <span class="brand-mark">P</span>PageTurn
+                </div>
+                <h1 class="h2 fw-bold">Welcome back</h1>
+                <p class="text-secondary mb-4">
+                    Sign in to see your borrowed books and reading history.
+                </p>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold" for="signinUsername"
+                        >Username</label
+                    ><input
+                        id="signinUsername"
+                        name="username"
+                        class="form-control form-control-lg"
+                        placeholder="Enter your username"
+                        autocomplete="username"
+                        required
+                    />
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-semibold" for="signinPassword"
+                        >Password</label
+                    ><input
+                        id="signinPassword"
+                        name="password"
+                        type="password"
+                        class="form-control form-control-lg"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    />
+                </div>
+                <button class="btn btn-primary btn-lg w-100" type="submit">
+                    Sign in →
+                </button>
+                <p class="text-center text-secondary mt-4 mb-0">
+                    New to PageTurn?
+                    <a href="#signup" class="fw-bold text-decoration-none"
+                        >Create an account</a
+                    >
+                </p>
+                <div class="alert alert-primary small mt-3 mb-0">
+                    UI prototype only. Authentication is not connected to a
+                    backend.
+                </div>
+            </form>
+        </main>
+
+        <main id="signup" class="page-view auth-area px-3 py-5 d-none">
+            <form class="auth-card surface p-4 p-md-5 demo-form">
+                <div class="navbar-brand d-flex align-items-center mb-4">
+                    <span class="brand-mark">P</span>PageTurn
+                </div>
+                <h1 class="h2 fw-bold">Create your account</h1>
+                <p class="text-secondary mb-4">
+                    Join the library and keep your books together.
+                </p>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold" for="signupUsername"
+                        >Username</label
+                    ><input
+                        id="signupUsername"
+                        name="username"
+                        class="form-control form-control-lg"
+                        placeholder="Choose a username"
+                        autocomplete="username"
+                        minlength="3"
+                        required
+                    />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold" for="signupPassword"
+                        >Password</label
+                    ><input
+                        id="signupPassword"
+                        name="password"
+                        type="password"
+                        class="form-control form-control-lg"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    />
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-semibold" for="signupConfirm"
+                        >Confirm password</label
+                    ><input
+                        id="signupConfirm"
+                        type="password"
+                        class="form-control form-control-lg"
+                        placeholder="Enter password again"
+                        minlength="6"
+                        required
+                    />
+                </div>
+                <button class="btn btn-primary btn-lg w-100" type="submit">
+                    Create account →
+                </button>
+                <p class="text-center text-secondary mt-4 mb-0">
+                    Already a member?
+                    <a href="#signin" class="fw-bold text-decoration-none"
+                        >Sign in</a
+                    >
+                </p>
+                <div class="alert alert-info small mt-3 mb-0">
+                    New accounts should receive the regular user role by
+                    default. Admin access should be assigned securely.
+                </div>
+            </form>
+        </main>
+
+        <main id="profile" class="page-view container-xl py-4 py-lg-5 d-none">
+            <div
+                class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4"
+            >
+                <div>
+                    <h1 class="h2 fw-bold mb-1">My library</h1>
+                    <p class="text-secondary mb-0">
+                        Your reading, all in one place.
+                    </p>
+                </div>
+                <a class="btn btn-primary" href="#home">Discover more books</a>
+            </div>
+            <div class="row g-4">
+                <aside class="col-lg-3">
+                    <div class="surface p-4 text-center h-100">
+                        <div class="profile-avatar mb-3">YA</div>
+                        <h2 class="h5 fw-bold mb-1">Yeasin Arafat</h2>
+                        <p class="text-secondary small">
+                            @yeasin · Library member
+                        </p>
+                        <span
+                            class="badge badge-available rounded-pill px-3 py-2"
+                            >Active member</span
+                        >
+                        <hr class="my-4" />
+                        <div class="text-start small text-secondary">
+                            <p>
+                                📚
+                                <strong class="text-dark">Member since</strong
+                                ><br /><span class="ms-4">October 2026</span>
+                            </p>
+                            <p>
+                                📖
+                                <strong class="text-dark">Reading goal</strong
+                                ><br /><span class="ms-4"
+                                    >12 books this year</span
+                                >
+                            </p>
+                        </div>
+                        <a
+                            href="#signin"
+                            class="btn btn-outline-secondary w-100 mt-2"
+                            >Sign out</a
+                        >
+                    </div>
+                </aside>
+                <section class="col-lg-9">
+                    <div class="row g-3 mb-4">
+                        <div class="col-sm-4">
+                            <div class="stat-card">
+                                <div class="stat-label">Currently borrowed</div>
+                                <div class="stat-number">2</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="stat-card">
+                                <div class="stat-label">Books returned</div>
+                                <div class="stat-number">8</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="stat-card">
+                                <div class="stat-label">Overdue books</div>
+                                <div class="stat-number text-success">0</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="surface p-3 p-lg-4 mb-4">
+                        <div class="mb-3">
+                            <h2 class="h5 fw-bold mb-1">Currently borrowed</h2>
+                            <p class="text-secondary small mb-0">
+                                Remember to return books by their due date.
+                            </p>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Book</th>
+                                        <th>Borrowed</th>
+                                        <th>Due date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong
+                                                >The Psychology of Money</strong
+                                            >
+                                            <div class="muted-small">
+                                                Morgan Housel
+                                            </div>
+                                        </td>
+                                        <td>Oct 20, 2026</td>
+                                        <td>Nov 03, 2026</td>
+                                        <td>
+                                            <span class="badge badge-available"
+                                                >On time</span
+                                            >
+                                        </td>
+                                        <td>
+                                            <button
+                                                class="btn btn-sm btn-outline-primary return-btn"
+                                            >
+                                                Return book
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Clean Code</strong>
+                                            <div class="muted-small">
+                                                Robert C. Martin
+                                            </div>
+                                        </td>
+                                        <td>Oct 23, 2026</td>
+                                        <td>Nov 06, 2026</td>
+                                        <td>
+                                            <span class="badge badge-available"
+                                                >On time</span
+                                            >
+                                        </td>
+                                        <td>
+                                            <button
+                                                class="btn btn-sm btn-outline-primary return-btn"
+                                            >
+                                                Return book
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="surface p-3 p-lg-4">
+                        <div class="mb-3">
+                            <h2 class="h5 fw-bold mb-1">Borrowing history</h2>
+                            <p class="text-secondary small mb-0">
+                                Books you've returned in the past.
+                            </p>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Book</th>
+                                        <th>Borrowed on</th>
+                                        <th>Returned on</th>
+                                        <th>Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>Atomic Habits</strong>
+                                            <div class="muted-small">
+                                                James Clear
+                                            </div>
+                                        </td>
+                                        <td>Sep 05, 2026</td>
+                                        <td>Sep 16, 2026</td>
+                                        <td>
+                                            <span class="badge badge-available"
+                                                >Returned</span
+                                            >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>The Alchemist</strong>
+                                            <div class="muted-small">
+                                                Paulo Coelho
+                                            </div>
+                                        </td>
+                                        <td>Aug 12, 2026</td>
+                                        <td>Aug 24, 2026</td>
+                                        <td>
+                                            <span class="badge badge-available"
+                                                >Returned</span
+                                            >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Deep Work</strong>
+                                            <div class="muted-small">
+                                                Cal Newport
+                                            </div>
+                                        </td>
+                                        <td>Jul 03, 2026</td>
+                                        <td>Jul 15, 2026</td>
+                                        <td>
+                                            <span class="badge badge-available"
+                                                >Returned</span
+                                            >
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <main id="admin" class="page-view container-xl py-4 py-lg-5 d-none">
+            <div
+                class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4"
+            >
+                <div>
+                    <h1 class="h2 fw-bold mb-1">Library administration</h1>
+                    <p class="text-secondary mb-0">
+                        Manage books, loans, and member access.
+                    </p>
+                </div>
+                <span class="badge badge-borrowed rounded-pill px-3 py-2"
+                    >Admin preview</span
+                >
+            </div>
+            <div class="row g-4">
+                <aside class="col-lg-3">
+                    <nav class="admin-sidebar nav flex-column gap-1">
+                        <div
+                            class="text-uppercase small fw-bold px-2 pt-2 pb-1"
+                            style="color: #8195ba"
+                        >
+                            Workspace
+                        </div>
+                        <a
+                            class="nav-link active"
+                            href="#adminBooks"
+                            data-admin-tab="books"
+                            >▤ &nbsp; Book inventory</a
+                        ><a
+                            class="nav-link"
+                            href="#adminLoans"
+                            data-admin-tab="loans"
+                            >↔ &nbsp; Borrowed books</a
+                        ><a
+                            class="nav-link"
+                            href="#adminUsers"
+                            data-admin-tab="users"
+                            >♙ &nbsp; Members & roles</a
+                        >
+                        <div
+                            class="text-uppercase small fw-bold px-2 pt-4 pb-1"
+                            style="color: #8195ba"
+                        >
+                            Account
+                        </div>
+                        <a class="nav-link" href="#home"
+                            >↗ &nbsp; Public library</a
+                        >
+                    </nav>
+                </aside>
+                <section class="col-lg-9">
+                    <div class="row row-cols-2 row-cols-xl-4 g-3 mb-4">
+                        <div class="col">
+                            <div class="stat-card">
+                                <div class="stat-label">Total copies</div>
+                                <div id="adminTotalBooks" class="stat-number">
+                                    248
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="stat-card">
+                                <div class="stat-label">Currently borrowed</div>
+                                <div class="stat-number">36</div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="stat-card">
+                                <div class="stat-label">Registered users</div>
+                                <div class="stat-number">124</div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="stat-card">
+                                <div class="stat-label">Overdue loans</div>
+                                <div class="stat-number text-danger">4</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="adminBooks" class="surface p-3 p-lg-4 admin-tab">
+                        <div
+                            class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3"
+                        >
+                            <div>
+                                <h2 class="h5 fw-bold mb-1">Book inventory</h2>
+                                <p class="text-secondary small mb-0">
+                                    Add books and update available quantities.
+                                </p>
+                            </div>
+                            <button class="btn btn-primary" id="openAddBook">
+                                ＋ Add new book
+                            </button>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-md">
+                                <input
+                                    class="form-control admin-search"
+                                    placeholder="Search books..."
+                                />
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <select class="form-select">
+                                    <option>All categories</option>
+                                    <option>Fiction</option>
+                                    <option>Technology</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <select class="form-select">
+                                    <option>All stock</option>
+                                    <option>In stock</option>
+                                    <option>Out of stock</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Book</th>
+                                        <th>Category</th>
+                                        <th>Total copies</th>
+                                        <th>Available</th>
+                                        <th>Borrowed</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminBookRows">
+                                    <tr>
+                                        <td>
+                                            <strong
+                                                >The Psychology of Money</strong
+                                            >
+                                            <div class="muted-small">
+                                                Morgan Housel
+                                            </div>
+                                        </td>
+                                        <td>Personal Growth</td>
+                                        <td>12</td>
+                                        <td>7</td>
+                                        <td>5</td>
+                                        <td>
+                                            <button
+                                                class="btn btn-sm btn-outline-primary edit-book"
+                                            >
+                                                Edit
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Clean Code</strong>
+                                            <div class="muted-small">
+                                                Robert C. Martin
+                                            </div>
+                                        </td>
+                                        <td>Technology</td>
+                                        <td>8</td>
+                                        <td>3</td>
+                                        <td>5</td>
+                                        <td>
+                                            <button
+                                                class="btn btn-sm btn-outline-primary edit-book"
+                                            >
+                                                Edit
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Atomic Habits</strong>
+                                            <div class="muted-small">
+                                                James Clear
+                                            </div>
+                                        </td>
+                                        <td>Personal Growth</td>
+                                        <td>15</td>
+                                        <td>0</td>
+                                        <td>15</td>
+                                        <td>
+                                            <button
+                                                class="btn btn-sm btn-outline-primary edit-book"
+                                            >
+                                                Edit
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>The Hobbit</strong>
+                                            <div class="muted-small">
+                                                J. R. R. Tolkien
+                                            </div>
+                                        </td>
+                                        <td>Fiction</td>
+                                        <td>10</td>
+                                        <td>6</td>
+                                        <td>4</td>
+                                        <td>
+                                            <button
+                                                class="btn btn-sm btn-outline-primary edit-book"
+                                            >
+                                                Edit
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div
+                        id="adminLoans"
+                        class="surface p-3 p-lg-4 admin-tab d-none"
+                    >
+                        <div
+                            class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3"
+                        >
+                            <div>
+                                <h2 class="h5 fw-bold mb-1">Borrowed books</h2>
+                                <p class="text-secondary small mb-0">
+                                    Monitor current loans and who has each book.
+                                </p>
+                            </div>
+                            <select class="form-select w-auto">
+                                <option>All loan statuses</option>
+                                <option>On time</option>
+                                <option>Overdue</option>
+                            </select>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Book</th>
+                                        <th>Borrower</th>
+                                        <th>Borrowed</th>
+                                        <th>Due date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong
+                                                >The Psychology of Money</strong
+                                            >
+                                        </td>
+                                        <td>
+                                            <strong>Yeasin Arafat</strong>
+                                            <div class="muted-small">
+                                                @yeasin
+                                            </div>
+                                        </td>
+                                        <td>Oct 20, 2026</td>
+                                        <td>Nov 03, 2026</td>
+                                        <td>
+                                            <span class="badge badge-available"
+                                                >On time</span
+                                            >
+                                        </td>
+                                        <td>
+                                            <button
+                                                class="btn btn-sm btn-outline-primary"
+                                            >
+                                                View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Atomic Habits</strong></td>
+                                        <td>
+                                            <strong>Nadia Rahman</strong>
+                                            <div class="muted-small">
+                                                @nadia
+                                            </div>
+                                        </td>
+                                        <td>Oct 02, 2026</td>
+                                        <td>Oct 16, 2026</td>
+                                        <td>
+                                            <span class="badge badge-overdue"
+                                                >Overdue</span
+                                            >
+                                        </td>
+                                        <td>
+                                            <button
+                                                class="btn btn-sm btn-outline-primary"
+                                            >
+                                                View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Clean Code</strong></td>
+                                        <td>
+                                            <strong>Arif Hasan</strong>
+                                            <div class="muted-small">@arif</div>
+                                        </td>
+                                        <td>Oct 24, 2026</td>
+                                        <td>Nov 07, 2026</td>
+                                        <td>
+                                            <span class="badge badge-available"
+                                                >On time</span
+                                            >
+                                        </td>
+                                        <td>
+                                            <button
+                                                class="btn btn-sm btn-outline-primary"
+                                            >
+                                                View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div
+                        id="adminUsers"
+                        class="surface p-3 p-lg-4 admin-tab d-none"
+                    >
+                        <div class="mb-3">
+                            <h2 class="h5 fw-bold mb-1">Members & roles</h2>
+                            <p class="text-secondary small mb-0">
+                                Review users and manage their access level.
+                            </p>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-md">
+                                <input
+                                    class="form-control admin-search"
+                                    placeholder="Search username..."
+                                />
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <select class="form-select">
+                                    <option>All roles</option>
+                                    <option>User</option>
+                                    <option>Admin</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Member</th>
+                                        <th>Joined</th>
+                                        <th>Books borrowed</th>
+                                        <th>Role</th>
+                                        <th>Account</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>Yeasin Arafat</strong>
+                                            <div class="muted-small">
+                                                @yeasin
+                                            </div>
+                                        </td>
+                                        <td>Oct 10, 2026</td>
+                                        <td>2</td>
+                                        <td>
+                                            <select
+                                                class="form-select form-select-sm role-select"
+                                            >
+                                                <option>User</option>
+                                                <option>Admin</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-available"
+                                                >Active</span
+                                            >
+                                        </td>
+                                        <td>
+                                            <button
+                                                class="btn btn-sm btn-outline-danger user-toggle"
+                                            >
+                                                Suspend
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Nadia Rahman</strong>
+                                            <div class="muted-small">
+                                                @nadia
+                                            </div>
+                                        </td>
+                                        <td>Sep 22, 2026</td>
+                                        <td>1</td>
+                                        <td>
+                                            <select
+                                                class="form-select form-select-sm role-select"
+                                            >
+                                                <option>User</option>
+                                                <option>Admin</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-available"
+                                                >Active</span
+                                            >
+                                        </td>
+                                        <td>
+                                            <button
+                                                class="btn btn-sm btn-outline-danger user-toggle"
+                                            >
+                                                Suspend
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Arif Hasan</strong>
+                                            <div class="muted-small">@arif</div>
+                                        </td>
+                                        <td>Aug 04, 2026</td>
+                                        <td>0</td>
+                                        <td>
+                                            <select
+                                                class="form-select form-select-sm role-select"
+                                            >
+                                                <option>User</option>
+                                                <option>Admin</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-overdue"
+                                                >Suspended</span
+                                            >
+                                        </td>
+                                        <td>
+                                            <button
+                                                class="btn btn-sm btn-outline-success user-toggle"
+                                            >
+                                                Activate
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="alert alert-info small mt-3 mb-0">
+                            Role changes and suspensions are visual demos only.
+                            Protect these actions with server-side authorization
+                            in the real application.
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <footer class="footer py-4 text-center small mt-4">
+            PageTurn Library · A Core PHP OOP practice project · UI prototype
+            only
+        </footer>
+
+        <div
+            class="modal fade"
+            id="bookModal"
+            tabindex="-1"
+            aria-labelledby="modalTitle"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-dialog-centered">
+                <form class="modal-content" id="bookForm">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5 fw-bold" id="modalTitle">
+                            Add a new book
+                        </h2>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <div
+                            class="alert alert-info small d-none"
+                            id="modalNotice"
+                        >
+                            Demo only: this row is added in the browser and is
+                            not saved to a database.
+                        </div>
+                        <div class="mb-3">
+                            <label for="newTitle" class="form-label fw-semibold"
+                                >Book title</label
+                            ><input
+                                id="newTitle"
+                                class="form-control"
+                                required
+                                placeholder="e.g. The Pragmatic Programmer"
+                            />
+                        </div>
+                        <div class="mb-3">
+                            <label
+                                for="newAuthor"
+                                class="form-label fw-semibold"
+                                >Author</label
+                            ><input
+                                id="newAuthor"
+                                class="form-control"
+                                required
+                                placeholder="Author name"
+                            />
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-7">
+                                <label
+                                    for="newCategory"
+                                    class="form-label fw-semibold"
+                                    >Category</label
+                                ><select id="newCategory" class="form-select">
+                                    <option>Fiction</option>
+                                    <option>Personal Growth</option>
+                                    <option>Technology</option>
+                                    <option>History</option>
+                                    <option>Science</option>
+                                </select>
+                            </div>
+                            <div class="col-5">
+                                <label
+                                    for="newQuantity"
+                                    class="form-label fw-semibold"
+                                    >Total copies</label
+                                ><input
+                                    id="newQuantity"
+                                    class="form-control"
+                                    type="number"
+                                    min="1"
+                                    value="1"
+                                    required
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-outline-secondary"
+                            data-bs-dismiss="modal"
+                        >
+                            Cancel</button
+                        ><button type="submit" class="btn btn-primary">
+                            Add book
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            const books = [
+                {
+                    title: "The Psychology of Money",
+                    author: "Morgan Housel",
+                    category: "Personal Growth",
+                    available: 7,
+                    total: 12,
+                    cover: "cover-1",
+                    short: "The Psychology<br>of Money",
+                },
+                {
+                    title: "Clean Code",
+                    author: "Robert C. Martin",
+                    category: "Technology",
+                    available: 3,
+                    total: 8,
+                    cover: "cover-2",
+                    short: "Clean<br>Code",
+                },
+                {
+                    title: "The Alchemist",
+                    author: "Paulo Coelho",
+                    category: "Fiction",
+                    available: 4,
+                    total: 9,
+                    cover: "cover-3",
+                    short: "The<br>Alchemist",
+                },
+                {
+                    title: "Atomic Habits",
+                    author: "James Clear",
+                    category: "Personal Growth",
+                    available: 0,
+                    total: 15,
+                    cover: "cover-4",
+                    short: "Atomic<br>Habits",
+                },
+                {
+                    title: "A Brief History of Time",
+                    author: "Stephen Hawking",
+                    category: "Science",
+                    available: 5,
+                    total: 7,
+                    cover: "cover-5",
+                    short: "A Brief<br>History of Time",
+                },
+                {
+                    title: "The Hobbit",
+                    author: "J. R. R. Tolkien",
+                    category: "Fiction",
+                    available: 6,
+                    total: 10,
+                    cover: "cover-6",
+                    short: "The Hobbit",
+                },
+                {
+                    title: "Deep Work",
+                    author: "Cal Newport",
+                    category: "Personal Growth",
+                    available: 2,
+                    total: 6,
+                    cover: "cover-7",
+                    short: "Deep<br>Work",
+                },
+                {
+                    title: "The Pragmatic Programmer",
+                    author: "David Thomas & Andrew Hunt",
+                    category: "Technology",
+                    available: 4,
+                    total: 5,
+                    cover: "cover-8",
+                    short: "The Pragmatic<br>Programmer",
+                },
+            ];
+            let category = "All",
+                query = "";
+            function renderBooks() {
+                const list = books.filter(
+                    (b) =>
+                        (category === "All" || b.category === category) &&
+                        `${b.title} ${b.author} ${b.category}`
+                            .toLowerCase()
+                            .includes(query.toLowerCase()),
+                );
+                document.querySelector("#bookCount").textContent =
+                    `${list.length} book${list.length === 1 ? "" : "s"}`;
+                document.querySelector("#homeBookGrid").innerHTML = list
+                    .map(
+                        (b) =>
+                            `<div class="col"><article class="surface p-2 p-md-3 h-100"><div class="book-cover ${b.cover}">${b.short}<small>${b.author}</small></div><div class="pt-3"><h3 class="h6 fw-bold mb-1">${b.title}</h3><div class="small text-secondary mb-3">${b.author} · ${b.category}</div><div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-2"><span class="badge ${b.available ? "badge-available" : "badge-overdue"}">${b.available ? `${b.available} available` : "All copies borrowed"}</span><button class="btn btn-sm ${b.available ? "btn-primary" : "btn-outline-secondary"} borrow-demo" ${b.available ? "" : "disabled"}>${b.available ? "Borrow" : "Unavailable"}</button></div></div></article></div>`,
+                    )
+                    .join("");
+                document
+                    .querySelectorAll(".borrow-demo")
+                    .forEach((btn) =>
+                        btn.addEventListener(
+                            "click",
+                            () => (location.hash = "#signin"),
+                        ),
+                    );
+            }
+            function showView(id) {
+                document
+                    .querySelectorAll(".page-view")
+                    .forEach((v) => v.classList.toggle("d-none", v.id !== id));
+                document
+                    .querySelectorAll("[data-nav]")
+                    .forEach((a) =>
+                        a.classList.toggle("active", a.dataset.nav === id),
+                    );
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                const nav = document.querySelector("#mainNav");
+                if (nav.classList.contains("show"))
+                    bootstrap.Collapse.getOrCreateInstance(nav).hide();
+            }
+            function route() {
+                let id = location.hash.replace("#", "") || "home";
+                if (
+                    !document.getElementById(id) ||
+                    !document.getElementById(id).classList.contains("page-view")
+                )
+                    id = "home";
+                showView(id);
+            }
+            window.addEventListener("hashchange", route);
+            document
+                .querySelectorAll("#homeFilters [data-category]")
+                .forEach((btn) =>
+                    btn.addEventListener("click", () => {
+                        document
+                            .querySelectorAll("#homeFilters [data-category]")
+                            .forEach((c) => {
+                                c.classList.toggle("btn-primary", c === btn);
+                                c.classList.toggle(
+                                    "btn-outline-secondary",
+                                    c !== btn,
+                                );
+                            });
+                        category = btn.dataset.category;
+                        renderBooks();
+                    }),
+                );
+            document
+                .querySelector("#bookSearch")
+                .addEventListener("input", (e) => {
+                    query = e.target.value;
+                    renderBooks();
+                });
+            document
+                .querySelector("#searchBtn")
+                .addEventListener("click", () => {
+                    query = document.querySelector("#bookSearch").value;
+                    renderBooks();
+                });
+            document.querySelectorAll(".demo-form").forEach((form) =>
+                form.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    const all = form.querySelectorAll('input[type="password"]');
+                    if (all.length > 1 && all[0].value !== all[1].value) {
+                        alert("Passwords do not match.");
+                        return;
+                    }
+                    alert(
+                        "UI prototype only — authentication is not implemented yet. This is your PHP OOP task.",
+                    );
+                }),
+            );
+            document
+                .querySelectorAll(".return-btn")
+                .forEach((b) =>
+                    b.addEventListener("click", () =>
+                        alert(
+                            "UI prototype only — implement the return-book logic in PHP OOP.",
+                        ),
+                    ),
+                );
+            document.querySelectorAll("[data-admin-tab]").forEach((a) =>
+                a.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    document
+                        .querySelectorAll("[data-admin-tab]")
+                        .forEach((x) => x.classList.toggle("active", x === a));
+                    document
+                        .querySelectorAll(".admin-tab")
+                        .forEach((x) =>
+                            x.classList.toggle(
+                                "d-none",
+                                x.id !==
+                                    "admin" +
+                                        a.dataset.adminTab[0].toUpperCase() +
+                                        a.dataset.adminTab.slice(1),
+                            ),
+                        );
+                }),
+            );
+            document.querySelectorAll(".user-toggle").forEach((b) =>
+                b.addEventListener("click", () => {
+                    const suspended = b.textContent.trim() === "Suspend";
+                    b.textContent = suspended ? "Activate" : "Suspend";
+                    const badge = b
+                        .closest("tr")
+                        .querySelector("td:nth-child(5) .badge");
+                    badge.textContent = suspended ? "Suspended" : "Active";
+                    badge.className =
+                        "badge " +
+                        (suspended ? "badge-overdue" : "badge-available");
+                    b.classList.toggle("btn-outline-danger", !suspended);
+                    b.classList.toggle("btn-outline-success", suspended);
+                }),
+            );
+            document
+                .querySelectorAll(".role-select")
+                .forEach((s) =>
+                    s.addEventListener("change", () =>
+                        alert(
+                            "Demo only: displayed role changed to " +
+                                s.value +
+                                ". Enforce permissions on the server in the real app.",
+                        ),
+                    ),
+                );
+            document
+                .querySelectorAll(".edit-book")
+                .forEach((b) =>
+                    b.addEventListener("click", () =>
+                        alert(
+                            "Edit UI placeholder — implement editing after Add Book works.",
+                        ),
+                    ),
+                );
+            const modalEl = document.querySelector("#bookModal"),
+                modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+            document
+                .querySelector("#openAddBook")
+                .addEventListener("click", () => {
+                    document
+                        .querySelector("#modalNotice")
+                        .classList.add("d-none");
+                    modal.show();
+                });
+            document
+                .querySelector("#bookForm")
+                .addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    const title = document.querySelector("#newTitle").value,
+                        author = document.querySelector("#newAuthor").value,
+                        cat = document.querySelector("#newCategory").value,
+                        total = Number(
+                            document.querySelector("#newQuantity").value,
+                        );
+                    const row = document.createElement("tr");
+                    row.innerHTML =
+                        '<td><strong></strong><div class="muted-small"></div></td><td></td><td></td><td></td><td>0</td><td><button class="btn btn-sm btn-outline-primary edit-book">Edit</button></td>';
+                    row.querySelector("strong").textContent = title;
+                    row.querySelector(".muted-small").textContent = author;
+                    row.children[1].textContent = cat;
+                    row.children[2].textContent = total;
+                    row.children[3].textContent = total;
+                    document.querySelector("#adminBookRows").prepend(row);
+                    row.querySelector(".edit-book").addEventListener(
+                        "click",
+                        () =>
+                            alert(
+                                "Edit UI placeholder — implement after Add Book works.",
+                            ),
+                    );
+                    document.querySelector("#adminTotalBooks").textContent =
+                        Number(
+                            document.querySelector("#adminTotalBooks")
+                                .textContent,
+                        ) + total;
+                    document
+                        .querySelector("#modalNotice")
+                        .classList.remove("d-none");
+                    e.target.reset();
+                    setTimeout(() => modal.hide(), 1100);
+                });
+            renderBooks();
+            route();
+        </script>
+    </body>
+</html>

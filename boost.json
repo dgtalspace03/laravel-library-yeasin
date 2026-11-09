@@ -1,0 +1,8 @@
+{
+    "agents": [
+        "pi"
+    ],
+    "mcp": true,
+    "nightwatch": false,
+    "sail": false
+}
