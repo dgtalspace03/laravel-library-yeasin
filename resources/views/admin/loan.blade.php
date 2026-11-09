@@ -1,5 +1,7 @@
-  <div class="tab-pane fade" id="adminLoans" role="tabpanel" aria-labelledby="loans-tab" tabindex="0">
-            <div class="surface p-3 p-lg-4">
+@extends('layouts.admin')
+
+@section('panel')
+    <div class="surface p-3 p-lg-4">
                 <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
                     <div>
                         <h2 class="h5 fw-bold mb-1">Borrowed books</h2>
@@ -53,4 +55,4 @@
                     </table>
                 </div>
             </div>
-        </div>
+@endsection

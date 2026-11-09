@@ -27,7 +27,7 @@
                             >
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-nav="admin" href="#admin"
+                            <a class="nav-link" data-nav="admin" href="/admin"
                                 >Admin</a
                             >
                         </li>

@@ -1,5 +1,7 @@
- <div class="tab-pane fade" id="adminUsers" role="tabpanel" aria-labelledby="users-tab" tabindex="0">
-            <div class="surface p-3 p-lg-4">
+@extends('layouts.admin')
+
+@section('panel')
+   <div class="surface p-3 p-lg-4">
                 <div class="mb-3">
                     <h2 class="h5 fw-bold mb-1">Members &amp; roles</h2>
                     <p class="text-secondary small mb-0">Review users and manage their access level.</p>
@@ -79,4 +81,4 @@
                     server-side authorization in the real application.
                 </div>
             </div>
-        </div>
+@endsection
