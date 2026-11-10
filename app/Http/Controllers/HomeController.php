@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\books;
+use App\Models\Borrow;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $books=books::all();
+        $borrowedIds=null;
+        if(Auth::check()){
+            $borrowedIds = Borrow::where('user_id', Auth::id())
+            ->whereNull('returned_at')
+            ->pluck('book_id');
+        }
+       
+        return view('index',compact('books','borrowedIds'));
     }
 }

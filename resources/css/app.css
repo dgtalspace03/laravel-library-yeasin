@@ -118,56 +118,21 @@
                 box-shadow: 0 5px 18px #17233b05;
             }
             .book-cover {
-                height: 180px;
+                height: 200px;
                 border-radius: 0.75rem;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 text-align: center;
-                padding: 1rem;
+             
                 font:
                     700 23px/1.15 Georgia,
                     serif;
-                box-shadow: inset 7px 0 #00000012;
+                
             }
-            .book-cover small {
-                display: block;
-                font: 600 10px/1.4 system-ui;
-                letter-spacing: 1px;
-                text-transform: uppercase;
-                margin-top: 12px;
-            }
-            .cover-1 {
-                background: #e7bc72;
-                color: #573d1d;
-            }
-            .cover-2 {
-                background: #a7c5e8;
-                color: #1c3b63;
-            }
-            .cover-3 {
-                background: #e99c98;
-                color: #6b2d39;
-            }
-            .cover-4 {
-                background: #8ac8b3;
-                color: #164e45;
-            }
-            .cover-5 {
-                background: #b7a5dc;
-                color: #3f2d68;
-            }
-            .cover-6 {
-                background: #d7d9df;
-                color: #343a4a;
-            }
-            .cover-7 {
-                background: #dcae8d;
-                color: #583a2b;
-            }
-            .cover-8 {
-                background: #a9b9a0;
-                color: #304c32;
+            .book-cover img{
+                object-fit: cover;
+                border-radius: 10px;
             }
             .badge-available {
                 background: #e6f7ef;

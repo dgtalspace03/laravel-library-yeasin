@@ -22,7 +22,7 @@
                             <a
                                 class="nav-link"
                                 data-nav="profile"
-                                href="#profile"
+                                href="/profile"
                                 >My Library</a
                             >
                         </li>

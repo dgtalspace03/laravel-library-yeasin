@@ -9,7 +9,7 @@
             <p class="text-secondary mb-0">Manage books, loans, and member access.</p>
         </div>
         <div class="d-flex align-items-center gap-2">
-            <span class="badge badge-borrowed rounded-pill px-3 py-2">Admin preview</span>
+            
             <a class="btn btn-outline-secondary btn-sm" href="{{ url('/') }}">↗ Public library</a>
         </div>
     </div>
