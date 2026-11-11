@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class books extends Model
 {
@@ -14,4 +15,7 @@ class books extends Model
     'total_copies',
     'available_copies'
    ];
+   public function borrows():HasMany{
+      return $this->hasMany(Borrow::class);
+   }
 }

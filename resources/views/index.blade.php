@@ -2,7 +2,7 @@
 
 @section('content')
     <main class="container-xl py-4 py-lg-5">
-    
+
         <section class="hero p-4 p-lg-5 mb-4">
             <div class="row align-items-center g-4">
                 <div class="col-lg-7">
@@ -35,24 +35,6 @@
             </div>
         </section>
 
-        <div class="surface p-2 p-md-3 mb-4">
-            <div class="row g-2">
-                <div class="col">
-                    <div class="input-group">
-                        <span class="input-group-text bg-white border-end-0">⌕</span>
-                        <input id="bookSearch" class="form-control border-start-0"
-                            placeholder="Search by title, author, or category..." aria-label="Search books" />
-                    </div>
-                </div>
-
-                <div class="col-auto">
-                    <button class="btn btn-primary h-100 px-4" id="searchBtn">
-                        Search
-                    </button>
-                </div>
-            </div>
-        </div>
-
         <section id="catalog">
 
             <div class="d-flex justify-content-between align-items-end flex-wrap gap-2 mb-3">
@@ -67,34 +49,55 @@
                     {{ $books->count() }} books
                 </span>
             </div>
+            <div class="surface p-2 p-md-3 mb-4">
+                <form action="#catalog">
+                <div class="row g-2">
+                    <div class="col">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0">⌕</span>
+                            <input type="text" name="category" value="{{ $search_category }}" class="d-none">
+                            <input id="bookSearch" value="{{ $search }}" name="search" class="form-control border-start-0"
+                                placeholder="Search by title, author, or category..." aria-label="Search books" />
+                        </div>
+                    </div>
 
+                    <div class="col-auto">
+                        <button class="btn btn-primary h-100 px-4" id="searchBtn">
+                            Search
+                        </button>
+                    </div>
+                </div>
+                </form>
+            </div>
             <div id="homeFilters" class="d-flex gap-2 flex-wrap mb-4">
-                <button class="btn btn-sm btn-primary rounded-pill" data-category="All">
-                    All books
-                </button>
+                @php
+                    $categories=[
+                        'All',
+                        'Fiction',
+                        'Personal growth',
+                        'Technology',
+                        'History'
+                    ]
+                @endphp
+              @foreach ($categories as $category )
+                @if ($search_category==$category)
+                    <button class="btn btn-sm btn-primary rounded-pill" data-category="{{ $category }}">
+                    {{ $category }}
+                    </button>
+                @else
+                   <button class="btn btn-sm btn-outline-secondary rounded-pill" data-category="{{ $category }}">
+                    {{ $category }}
+                </button> 
+                @endif
+              @endforeach
 
-                <button class="btn btn-sm btn-outline-secondary rounded-pill" data-category="Fiction">
-                    Fiction
-                </button>
-
-                <button class="btn btn-sm btn-outline-secondary rounded-pill" data-category="Personal Growth">
-                    Personal growth
-                </button>
-
-                <button class="btn btn-sm btn-outline-secondary rounded-pill" data-category="Technology">
-                    Technology
-                </button>
-
-                <button class="btn btn-sm btn-outline-secondary rounded-pill" data-category="History">
-                    History
-                </button>
+                
             </div>
 
             <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 g-3 g-lg-4">
 
                 @forelse ($books as $book)
-                    
-                    <x-book-card :book="$book"  :borrowed="$borrowedIds->contains($book->id)"/>
+                    <x-book-card :book="$book" :borrowed="$borrowedIds->contains($book->id)" />
 
                 @empty
 

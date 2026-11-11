@@ -6,13 +6,15 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use Laravel\Mcp\Request;
 
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-
-Route::middleware(['auth', 'admin'])
+Route::get('/', [HomeController::class, 'index'])->middleware('suspend')->name('home');
+Route::get('/home',function ( ){
+    return redirect()->route('home');
+});
+Route::middleware(['auth', 'admin','suspend'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
@@ -29,6 +31,14 @@ Route::middleware(['auth', 'admin'])
         Route::post('user/edit-role/{id}',[AdminController::class,'editRole'])->name('edit-role');
     });
 
-Route::post('/borrow-book/{id}',[BorrowController::class,'borrow'])->middleware(['auth'])->name('borrow-book');
-Route::get('/profile',[ProfileController::class,'index']);
+Route::post('/borrow-book/{id}',[BorrowController::class,'borrow'])->middleware(['auth','suspend'])->name('borrow-book');
+Route::post('/return-book/{id}',[BorrowController::class,'return_book'])->middleware(['auth','suspend'])->name('return-book');
+Route::get('/profile',[ProfileController::class,'index'])->name('profile');
+
+Route::get('/suspend',function (Request $request){
+    if(Auth::user()->status=='active'){
+        return redirect(route('home'));
+    }
+    return view('suspend');
+})->name('suspend');
 

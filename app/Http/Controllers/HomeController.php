@@ -24,16 +24,26 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books=books::all();
-        $borrowedIds=null;
-        if(Auth::check()){
-            $borrowedIds = Borrow::where('user_id', Auth::id())
-            ->whereNull('returned_at')
-            ->pluck('book_id');
-        }
+        $search = $request->query('search');
+        $search_category = $request->query('category') ?? 'All';
        
-        return view('index',compact('books','borrowedIds'));
+            $books = books::query()
+            ->when($search_category && $search_category !== 'All',fn($q) => $q->where('category',$search_category))
+            ->when($search,fn($q) => $q->where(fn($sub) => $sub
+            ->where('title','like',"%$search%")
+            ->orWhere('author_name','like',"%$search%")
+            ))
+            ->get();
+      
+        $borrowedIds = null;
+        if (Auth::check()) {
+            $borrowedIds = Borrow::where('user_id', Auth::id())
+                ->whereNull('returned_at')
+                ->pluck('book_id');
+        }
+
+        return view('index', compact('books', 'borrowedIds', 'search', 'search_category'));
     }
 }

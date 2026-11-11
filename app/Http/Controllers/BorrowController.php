@@ -18,7 +18,8 @@ class BorrowController extends Controller
        $userId=Auth::id();
        $chk=Borrow::where([
         'user_id'=>$userId,
-        'book_id'=>$book->id
+        'book_id'=>$book->id,
+        'returned_at'=>null
        ])->first();
         if($chk){
             return redirect()->route('home')->with('error', 'Book Already borrowed');
@@ -31,5 +32,15 @@ class BorrowController extends Controller
        
         $book->save();
         return redirect()->route('home')->with('success', 'Book borrowed successfully.');
+    }
+    public function return_book($id){
+        $borrow=Borrow::findOrFail($id);
+        $book=books::findOrFail($borrow->book_id);
+
+        $borrow->returned_at=now();
+        $borrow->save();
+        $book->available_copies+=1;
+        $book->save();
+        return redirect()->route('profile')->with('success', 'Book Returned successfully.');
     }
 }

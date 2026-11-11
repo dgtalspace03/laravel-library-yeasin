@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\CheckAdmin;
+use App\Http\Middleware\suspend;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -14,7 +15,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
        $middleware->alias([
-        'admin'=> CheckAdmin::class
+        'admin'=> CheckAdmin::class,
+        'suspend'=>suspend::class
        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
