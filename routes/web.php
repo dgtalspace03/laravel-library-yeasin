@@ -26,7 +26,7 @@ Route::middleware(['auth', 'admin','suspend'])
         Route::post('books/edit/{id}', [AdminController::class, 'editBook'])->name('books.editreq');
         Route::post('books', [AdminController::class, 'storeBook'])->name('books.store');
 
-        Route::get('loans', [AdminController::class, 'loans'])->name('loans');
+        Route::get('borrows', [AdminController::class, 'borrows'])->name('borrows');
         Route::get('users', [AdminController::class, 'users'])->name('users');
         Route::post('user/edit-role/{id}',[AdminController::class,'editRole'])->name('edit-role');
     });

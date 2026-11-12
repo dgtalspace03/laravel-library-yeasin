@@ -12,27 +12,28 @@
             </a>
         </div>
 
-        <div class="row g-2 mb-3">
+        <form class="row g-2 mb-3" action="#catalog">
             <div class="col-md">
-                <input class="form-control admin-search" placeholder="Search books...">
+                <input value="{{ $search }}" class="form-control admin-search" name="search" placeholder="Search books...">
             </div>
-            <div class="col-sm-6 col-md-3">
-                <select class="form-select">
-                    <option>All categories</option>
-                    <option>Fiction</option>
-                    <option>Technology</option>
+            <div class="col-sm-4 col-md-2">
+                <select class="form-select" name="category">
+                   @foreach (config('constants.book_categories') as $l_category )
+                    <option @selected($category==$l_category) value="{{ $l_category }}">{{$l_category}}</option>
+                   @endforeach
                 </select>
             </div>
-            <div class="col-sm-6 col-md-3">
-                <select class="form-select">
-                    <option>All stock</option>
-                    <option>In stock</option>
-                    <option>Out of stock</option>
+            <div class="col-sm-4 col-md-2">
+                <select class="form-select" name="stock">
+                    @foreach (config('constants.stocks_list') as $st_item)
+                     <option @selected($stock==$st_item) value="{{ $st_item }}">{{$st_item}}</option>   
+                    @endforeach
                 </select>
             </div>
-        </div>
+            <button type="submit" class="col-sm-3 col-md-1 btn btn-primary">Filter</button>
+        </form>
 
-        <div class="table-responsive">
+        <div class="table-responsive" id="catalog">
             <table class="table align-middle mb-0">
                 <thead>
                     <tr>

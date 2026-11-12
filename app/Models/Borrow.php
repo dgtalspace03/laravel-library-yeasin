@@ -12,11 +12,16 @@ class Borrow extends Model
         return [
             'borrowed_at' => 'datetime',
             'returned_at' => 'datetime',
+            'due_at'    => 'datetime'
         ];
     }
+
     protected $fillable = [
         'book_id',
         'user_id',
+        'returned_at',
+        'due_at',
+
 
     ];
     public function book(): BelongsTo

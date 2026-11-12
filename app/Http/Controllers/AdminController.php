@@ -10,10 +10,20 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
-    public function books()
-    {
-        $books = books::all();
-        return view('admin.books', compact('books'));
+    public function books(Request $request)
+    {   $search=$request->query('search');
+        $category= $request->query('category');
+        $stock=$request->query('stock');
+        $books = books::query()
+        ->when($search,fn($q) => $q->where(fn($sub) => $sub
+        ->where('title','like',"%$search%")
+        ->orWhere('author_name','like',"%$search%")
+        ->orWhere('category','like',"%$search%")))
+        ->when($category && $category!='All',fn($q) => $q->where('category',$category))
+        ->when($stock=='In Stocks',fn($q) => $q->where('available_copies' ,'>', 0))
+        ->when($stock=='Out Of Stocks',fn($q) => $q->where('available_copies' , 0))
+        ->get();
+        return view('admin.books', compact('books','search','category','stock'));
     }
 
     public function createBook()
@@ -34,7 +44,7 @@ class AdminController extends Controller
             'title' => 'required|string|min:3|max:50',
             'author' => 'required|string|min:3|max:50',
             'category' => 'required|string|min:3|max:50',
-            'quantity' => 'numeric|required|min:1|max:1000',
+            'quantity' => 'numeric|required|min:0|max:1000',
             'thumbnail' => 'image|max:5060'
         ]);
         $title = $request->input('title');
@@ -91,10 +101,16 @@ class AdminController extends Controller
 
         return redirect()->route('admin.books');
     }
-    public function loans()
+    public function borrows(Request $request)
     {
-        $borrow_books=Borrow::all();
-        return view('admin.loan',compact('borrow_books'));
+        $filter=$request->query('filter');
+        $borrow_books=Borrow::query()
+        
+        ->when($filter=='Not Returned',fn($q) => $q->where('returned_at',null))
+        ->when($filter=='On Time',fn($q) => $q->whereColumn('returned_at','<=','due_at'))
+        ->when($filter=='Due',fn($q) => $q->whereColumn('returned_at','>','due_at'))
+        ->get();
+        return view('admin.borrows',compact('borrow_books','filter'));
     }
     public function users(Request $request)
     {

@@ -70,16 +70,7 @@
                 </form>
             </div>
             <div id="homeFilters" class="d-flex gap-2 flex-wrap mb-4">
-                @php
-                    $categories=[
-                        'All',
-                        'Fiction',
-                        'Personal growth',
-                        'Technology',
-                        'History'
-                    ]
-                @endphp
-              @foreach ($categories as $category )
+              @foreach (config('constants.book_categories') as $category )
                 @if ($search_category==$category)
                     <button class="btn btn-sm btn-primary rounded-pill" data-category="{{ $category }}">
                     {{ $category }}

@@ -1,20 +1,20 @@
 @extends('layouts.admin')
 
 @section('panel')
-    <div class="surface p-3 p-lg-4">
+    <div class="surface p-3 p-lg-4" >
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
             <div>
                 <h2 class="h5 fw-bold mb-1">Borrowed books</h2>
                 <p class="text-secondary small mb-0">Monitor current loans and who has each book.</p>
             </div>
-            <select class="form-select w-auto">
-                <option>All loan statuses</option>
-                <option>On time</option>
-                <option>Overdue</option>
+            <select class="form-select w-auto" id="borrow_filter">
+                @foreach (config('constants.borrow_status_list') as $status)
+                    <option @selected($filter==$status) value="{{ $status }}">{{$status}}</option>
+                @endforeach
             </select>
         </div>
 
-        <div class="table-responsive">
+        <div class="table-responsive" >
             <table class="table align-middle mb-0">
                 <thead>
                     <tr>

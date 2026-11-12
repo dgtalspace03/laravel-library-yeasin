@@ -96,7 +96,7 @@
                                         <td>{{ $due->format('d M Y') }}</td>
                                         <td>
                                             @if (!$due->isPast())
-                                                <span class="badge bg-success px-3 py-1">{{ $due->diffForHumans() }}</span>
+                                                <span class="badge bg-success px-3 py-1">{{ $borrow->due_at->diffForHumans() }}</span>
                                             @else
                                                 <span class="badge bg-danger">Due</span>
                                             @endif

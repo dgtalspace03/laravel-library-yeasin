@@ -43,7 +43,7 @@
 
                 <div class="col-5">
                     <label for="quantity" class="form-label fw-semibold">Available copies</label>
-                    <input id="quantity" name="quantity" type="number" min="1" value="{{ $book->available_copies }}"
+                    <input id="quantity" name="quantity" type="number" min="0" value="{{ $book->available_copies }}"
                            class="form-control @error('quantity') is-invalid @enderror" required>
                     @error('quantity') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>

@@ -26,7 +26,8 @@ class BorrowController extends Controller
         }
         Borrow::create([
         'user_id'=>$userId,
-        'book_id'=>$book->id
+        'book_id'=>$book->id,
+        'due_at'=> now()->addDays(7),
         ]);
         $book->available_copies-=1;
        
